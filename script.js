@@ -89,6 +89,6 @@ function submitOrder() {
   });
 
   // Buka WhatsApp dengan pesan yang diformat
-  const whatsappUrl = `https://wa.me/6285757178032?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = `https://wa.me/6282282230423?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, '_blank');
 }
