@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('addProduct').addEventListener('click', addProductRow);
 
 function addProductRow() {
+  // Cek apakah produk sudah ada di baris lain
+  const existingProducts = Array.from(document.querySelectorAll('.product-select')).map(select => select.value);
+
   const newRow = document.createElement('div');
   newRow.className = 'product-row';
   newRow.innerHTML = `
@@ -44,7 +47,17 @@ function addProductRow() {
   const productSelect = newRow.querySelector('.product-select');
   const quantityInput = newRow.querySelector('.quantity');
 
-  productSelect.addEventListener('change', calculateTotal);
+  productSelect.addEventListener('change', function () {
+    const selectedProduct = this.value;
+    if (existingProducts.includes(selectedProduct)) {
+      alert('Produk ini sudah ditambahkan. Silakan pilih produk lain.');
+      this.value = ''; // Reset pilihan produk
+    } else {
+      existingProducts.push(selectedProduct); // Tambahkan produk ke daftar
+      calculateTotal(); // Hitung ulang total harga
+    }
+  });
+
   quantityInput.addEventListener('input', calculateTotal);
 }
 
