@@ -10,6 +10,19 @@ const productPrices = {
   "Pia Merah": 20000,
 };
 
+// Inisialisasi event listener untuk baris produk pertama saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+  const initialRow = document.querySelector('.product-row');
+  if (initialRow) {
+    const productSelect = initialRow.querySelector('.product-select');
+    const quantityInput = initialRow.querySelector('.quantity');
+
+    // Tambahkan event listener untuk baris pertama
+    productSelect.addEventListener('change', calculateTotal);
+    quantityInput.addEventListener('input', calculateTotal);
+  }
+});
+
 // Tambah baris produk
 document.getElementById('addProduct').addEventListener('click', addProductRow);
 
@@ -28,20 +41,31 @@ function addProductRow() {
   document.getElementById('productRows').appendChild(newRow);
 
   // Tambah event listener untuk update total
-  newRow.querySelector('.product-select').addEventListener('change', calculateTotal);
-  newRow.querySelector('.quantity').addEventListener('input', calculateTotal);
+  const productSelect = newRow.querySelector('.product-select');
+  const quantityInput = newRow.querySelector('.quantity');
+
+  productSelect.addEventListener('change', calculateTotal);
+  quantityInput.addEventListener('input', calculateTotal);
 }
 
 // Hitung total
 function calculateTotal() {
   let grandTotal = 0;
+
+  // Iterasi semua baris produk
   document.querySelectorAll('.product-row').forEach(row => {
-    const product = row.querySelector('.product-select').value;
-    const quantity = parseInt(row.querySelector('.quantity').value) || 0;
+    const productSelect = row.querySelector('.product-select');
+    const quantityInput = row.querySelector('.quantity');
+
+    const product = productSelect.value;
+    const quantity = parseInt(quantityInput.value) || 0;
+
     if (product && quantity > 0) {
       grandTotal += productPrices[product] * quantity;
     }
   });
+
+  // Update total harga
   document.getElementById('grandTotal').textContent = `Rp${grandTotal.toLocaleString()}`;
 }
 
