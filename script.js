@@ -6,8 +6,11 @@ function scrollToOrderForm() {
 // Data harga produk
 const productPrices = {
   "Gula Aren Bubuk": 25000,
-  "Kripik Pisang Karamel": 7000,
-  "Pia Merah": 20000,
+  "Kripik Pisang Karamel - 100gr": 7000, // Harga untuk 100 gram
+  "Kripik Pisang Karamel - 250gr": 17500, // Harga untuk 250 gram
+  "Pia Mirah - Coklat": 20000, // Pia Mirah dengan rasa Coklat
+  "Pia Mirah - Keju": 20000, // Pia Mirah dengan rasa Keju
+  "Pia Mirah - Kacang Ijo": 20000, // Pia Mirah dengan rasa Kacang Ijo
 };
 
 // Inisialisasi event listener untuk baris produk pertama saat halaman dimuat
@@ -36,8 +39,11 @@ function addProductRow() {
       <select class="product-select">
           <option value="">Pilih Produk</option>
           <option value="Gula Aren Bubuk">Gula Aren Bubuk (Rp25,000)</option>
-          <option value="Kripik Pisang Karamel">Kripik Pisang Karamel (Rp7,000)</option>
-          <option value="Pia Merah">Pia Merah (Rp20,000)</option>
+          <option value="Kripik Pisang Karamel - 100gr">Kripik Pisang Karamel - 100gr (Rp7,000)</option>
+          <option value="Kripik Pisang Karamel - 250gr">Kripik Pisang Karamel - 250gr (Rp17,500)</option>
+          <option value="Pia Mirah - Coklat">Pia Mirah - Coklat (Rp20,000)</option>
+          <option value="Pia Mirah - Keju">Pia Mirah - Keju (Rp20,000)</option>
+          <option value="Pia Mirah - Kacang Ijo">Pia Mirah - Kacang Ijo (Rp20,000)</option>
       </select>
       <input type="number" class="quantity" min="1" placeholder="Jumlah">
   `;
@@ -126,6 +132,6 @@ function submitOrder() {
   });
 
   // Buka WhatsApp dengan pesan yang diformat
-  const whatsappUrl = `https://wa.me/6282282230423?text=${encodeURIComponent(message)}`;
+  const whatsappUrl = `https://wa.me/6285245415605?text=${encodeURIComponent(message)}`;
   window.open(whatsappUrl, '_blank');
 }
